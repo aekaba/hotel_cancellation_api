@@ -1,4 +1,5 @@
 setuptools>=65.0.0
+wheel>=0.38.4
 absl-py==2.3.0
 annotated-types==0.7.0
 anyio==4.9.0
@@ -58,7 +59,7 @@ statsmodels==0.13.2
 tenacity==8.0.1
 tensorboard==2.16.2
 tensorboard-data-server==0.7.2
-tensorflow==2.16.2
+tensorflow==2.12.0
 tensorflow-io-gcs-filesystem==0.37.1
 tensorflow-macos==2.16.2
 termcolor==3.1.0
