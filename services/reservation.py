@@ -14,6 +14,26 @@ async def get_all_reservations():
         reservations.append(reservation)
     return reservations
 
+async def get_main_page():
+    reservations = []
+    async for reservation in reservation_collection.find():
+        reservations.append(reservation)
+
+    total = len(reservations)
+    canceled = len([r for r in reservations if r.get("prediction_result") == 1])
+    not_canceled = len([r for r in reservations if r.get("prediction_result") == 0])
+
+    canceled_pct = round((canceled / total) * 100, 2) if total else 0
+    not_canceled_pct = round((not_canceled / total) * 100, 2) if total else 0
+
+    return {
+        "total_reservations": total,
+        "total_cancellations": canceled,
+        "total_not_cancellations": not_canceled,
+        "cancelled_percentage": canceled_pct,
+        "not_cancelled_percentage": not_canceled_pct
+    }
+
 
 async def create_reservation(data: ReservationInput):
     try:

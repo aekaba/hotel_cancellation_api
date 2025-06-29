@@ -10,6 +10,7 @@ from services.reservation import create_reservation
 from services.reservation import predict_and_update_reservation
 from services.reservation import get_all_reservations
 from services.reservation import delete_reservation
+from services.reservation import get_main_page
 
 app = FastAPI(
     title="Rezervasyon İptal Tahmin API",
@@ -69,7 +70,9 @@ async def list_reservations():
     except Exception as e:
         return {"status": "error", "detail": str(e)}
     
-
+@app.get("/homedetail")
+async def home_detail():
+    return await get_main_page()
 
 @app.delete("/reservations/{reservation_id}")
 async def remove_reservation(reservation_id: str):
